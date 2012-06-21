@@ -15,6 +15,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:@"Nearest" image:[UIImage imageNamed:@"103-map.png"] tag:0]];
+
     }
     return self;
 }

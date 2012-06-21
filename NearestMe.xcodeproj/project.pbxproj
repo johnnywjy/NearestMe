@@ -17,6 +17,8 @@
 		3B979ECE159391410017376D /* MyLocListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B979ECD159391410017376D /* MyLocListTableViewController.m */; };
 		3B979ED2159391730017376D /* NearestLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B979ED0159391730017376D /* NearestLocationViewController.m */; };
 		3B979ED3159391730017376D /* NearestLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B979ED1159391730017376D /* NearestLocationViewController.xib */; };
+		3B979EDD159393FF0017376D /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B979EDC159393FF0017376D /* 103-map.png */; };
+		3B979EDF159394060017376D /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B979EDE159394060017376D /* 74-location.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		3B979ECF159391730017376D /* NearestLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearestLocationViewController.h; sourceTree = "<group>"; };
 		3B979ED0159391730017376D /* NearestLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearestLocationViewController.m; sourceTree = "<group>"; };
 		3B979ED1159391730017376D /* NearestLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearestLocationViewController.xib; sourceTree = "<group>"; };
+		3B979EDC159393FF0017376D /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
+		3B979EDE159394060017376D /* 74-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 		3B979EB9159390C30017376D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3B979EDE159394060017376D /* 74-location.png */,
+				3B979EDC159393FF0017376D /* 103-map.png */,
 				3B979EBA159390C30017376D /* NearestMe-Info.plist */,
 				3B979EBB159390C30017376D /* InfoPlist.strings */,
 				3B979EBE159390C30017376D /* main.m */,
@@ -158,6 +164,8 @@
 			files = (
 				3B979EBD159390C30017376D /* InfoPlist.strings in Resources */,
 				3B979ED3159391730017376D /* NearestLocationViewController.xib in Resources */,
+				3B979EDD159393FF0017376D /* 103-map.png in Resources */,
+				3B979EDF159394060017376D /* 74-location.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
