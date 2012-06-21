@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NearestMeAppDelegate : UIResponder <UIApplicationDelegate>
+@interface NearestMeAppDelegate : UIResponder <UIApplicationDelegate>{
+    UITabBarController *tabBarController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

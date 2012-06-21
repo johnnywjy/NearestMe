@@ -88,9 +88,7 @@
 			children = (
 				3B979ECC159391410017376D /* MyLocListTableViewController.h */,
 				3B979ECD159391410017376D /* MyLocListTableViewController.m */,
-				3B979ECF159391730017376D /* NearestLocationViewController.h */,
-				3B979ED0159391730017376D /* NearestLocationViewController.m */,
-				3B979ED1159391730017376D /* NearestLocationViewController.xib */,
+				3B979EE0159394D70017376D /* Nearest Location VC Group */,
 				3B979EC4159390C30017376D /* NearestMe.xcdatamodeld */,
 				3B979EC1159390C30017376D /* NearestMeAppDelegate.h */,
 				3B979EC2159390C30017376D /* NearestMeAppDelegate.m */,
@@ -110,6 +108,16 @@
 				3B979EC0159390C30017376D /* NearestMe-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B979EE0159394D70017376D /* Nearest Location VC Group */ = {
+			isa = PBXGroup;
+			children = (
+				3B979ECF159391730017376D /* NearestLocationViewController.h */,
+				3B979ED0159391730017376D /* NearestLocationViewController.m */,
+				3B979ED1159391730017376D /* NearestLocationViewController.xib */,
+			);
+			name = "Nearest Location VC Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +254,7 @@
 		3B979ECA159390C30017376D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NearestMe/NearestMe-Prefix.pch";
 				INFOPLIST_FILE = "NearestMe/NearestMe-Info.plist";
@@ -257,6 +266,7 @@
 		3B979ECB159390C30017376D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NearestMe/NearestMe-Prefix.pch";
 				INFOPLIST_FILE = "NearestMe/NearestMe-Info.plist";

@@ -7,6 +7,8 @@
 //
 
 #import "NearestMeAppDelegate.h"
+#import "MyLocListTableViewController.h"
+#import "NearestLocationViewController.h"
 
 @implementation NearestMeAppDelegate
 
@@ -20,6 +22,55 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // ==============================================================================================
+    // Obtain the managed object context.
+    NSManagedObjectContext *context = [self managedObjectContext];
+    if (!context) {
+        NSLog(@"No NSManagedObjectContext generated");
+    }
+    
+    
+    // ==============================================================================================
+    // Create the views to appear in the tab bar
+    //
+    // View 1 - the location list and editor
+    //
+    MyLocListTableViewController *rootViewController = [[MyLocListTableViewController alloc]
+                                                        initWithStyle:UITableViewStylePlain];
+    
+    // Pass the managed object context to the view controller.
+    [rootViewController setManagedObjectContext:context];
+    
+    UINavigationController *aNavigationController = [[UINavigationController alloc]
+                                                     initWithRootViewController:rootViewController];
+    
+    //
+    // View 2 - the nearest item to me view
+    //
+    
+    NearestLocationViewController *nearestLocVC = [[NearestLocationViewController alloc]
+                                                   initWithNibName:@"NearestLocationViewController" bundle:nil];
+    
+    // Pass the managed object context to the view controller.
+    [nearestLocVC setManagedObjectContext:context];
+    
+    //
+    // Tab Bar Controller
+    //
+    tabBarController = [[UITabBarController alloc] init];
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:aNavigationController, nearestLocVC, nil]];
+
+    [[self window] addSubview:[tabBarController view]];
+    
+    [rootViewController release];
+    [aNavigationController release];
+    [nearestLocVC release];
+    
+    
+    
+    // ==============================================================================================
+
     [self.window makeKeyAndVisible];
     return YES;
 }

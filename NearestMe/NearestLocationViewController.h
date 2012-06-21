@@ -10,4 +10,6 @@
 
 @interface NearestLocationViewController : UIViewController
 
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
 @end

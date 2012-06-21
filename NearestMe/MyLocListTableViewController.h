@@ -10,4 +10,7 @@
 
 @interface MyLocListTableViewController : UITableViewController
 
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
 @end

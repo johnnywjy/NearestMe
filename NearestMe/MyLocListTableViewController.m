@@ -11,11 +11,14 @@
 
 @implementation MyLocListTableViewController
 
+@synthesize managedObjectContext;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:@"Locations" image:[UIImage imageNamed:@"74-location.png"] tag:1]];
     }
     return self;
 }
