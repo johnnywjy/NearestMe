@@ -23,6 +23,7 @@
 		C305109F1594A63C005ADFCE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C305109E1594A63C005ADFCE /* MapKit.framework */; };
 		C30510BF1594B64B005ADFCE /* NewLocationEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30510BD1594B64B005ADFCE /* NewLocationEntryViewController.m */; };
 		C30510C01594B64B005ADFCE /* NewLocationEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C30510BE1594B64B005ADFCE /* NewLocationEntryViewController.xib */; };
+		C30510C71594CA86005ADFCE /* LocationEntityAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C30510C61594CA86005ADFCE /* LocationEntityAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		C30510BC1594B64B005ADFCE /* NewLocationEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLocationEntryViewController.h; sourceTree = "<group>"; };
 		C30510BD1594B64B005ADFCE /* NewLocationEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLocationEntryViewController.m; sourceTree = "<group>"; };
 		C30510BE1594B64B005ADFCE /* NewLocationEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewLocationEntryViewController.xib; sourceTree = "<group>"; };
+		C30510C51594CA86005ADFCE /* LocationEntityAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEntityAnnotation.h; sourceTree = "<group>"; };
+		C30510C61594CA86005ADFCE /* LocationEntityAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEntityAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +102,17 @@
 		3B979EB8159390C30017376D /* NearestMe */ = {
 			isa = PBXGroup;
 			children = (
+				C30510C51594CA86005ADFCE /* LocationEntityAnnotation.h */,
+				C30510C61594CA86005ADFCE /* LocationEntityAnnotation.m */,
 				3B979ECC159391410017376D /* MyLocListTableViewController.h */,
 				3B979ECD159391410017376D /* MyLocListTableViewController.m */,
 				3B979EE0159394D70017376D /* Nearest Location VC Group */,
 				3B979EC4159390C30017376D /* NearestMe.xcdatamodeld */,
 				3B979EC1159390C30017376D /* NearestMeAppDelegate.h */,
 				3B979EC2159390C30017376D /* NearestMeAppDelegate.m */,
+				C30510BC1594B64B005ADFCE /* NewLocationEntryViewController.h */,
+				C30510BD1594B64B005ADFCE /* NewLocationEntryViewController.m */,
+				C30510BE1594B64B005ADFCE /* NewLocationEntryViewController.xib */,
 				3B979EB9159390C30017376D /* Supporting Files */,
 			);
 			path = NearestMe;
@@ -129,9 +137,6 @@
 				3B979ECF159391730017376D /* NearestLocationViewController.h */,
 				3B979ED0159391730017376D /* NearestLocationViewController.m */,
 				3B979ED1159391730017376D /* NearestLocationViewController.xib */,
-				C30510BC1594B64B005ADFCE /* NewLocationEntryViewController.h */,
-				C30510BD1594B64B005ADFCE /* NewLocationEntryViewController.m */,
-				C30510BE1594B64B005ADFCE /* NewLocationEntryViewController.xib */,
 			);
 			name = "Nearest Location VC Group";
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				3B979ECE159391410017376D /* MyLocListTableViewController.m in Sources */,
 				3B979ED2159391730017376D /* NearestLocationViewController.m in Sources */,
 				C30510BF1594B64B005ADFCE /* NewLocationEntryViewController.m in Sources */,
+				C30510C71594CA86005ADFCE /* LocationEntityAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
