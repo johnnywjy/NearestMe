@@ -14,6 +14,7 @@
 @synthesize managedObjectContext;
 @synthesize latitudeLabel;
 @synthesize longitudeLabel;
+@synthesize mapView;
 
 
 // ================================================================================================
@@ -28,7 +29,13 @@
           [newLocation coordinate].longitude);
     [latitudeLabel setText:[NSString stringWithFormat:@"%.6f",[newLocation coordinate].latitude]];
     [longitudeLabel setText:[NSString stringWithFormat:@"%.6f",[newLocation coordinate].longitude]];
-    [latitudeLabel setNeedsDisplay];
+
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([newLocation coordinate],
+                                                                       0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
+    [mapView setRegion:adjustedRegion animated:YES];
+
+    
 }
 
 - (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -80,6 +87,7 @@
 {
     [self setLatitudeLabel:nil];
     [self setLongitudeLabel:nil];
+    [self setMapView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -108,6 +116,7 @@
 - (void)dealloc {
     [latitudeLabel release];
     [longitudeLabel release];
+    [mapView release];
     [super dealloc];
 }
 @end
