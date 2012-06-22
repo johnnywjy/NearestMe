@@ -12,6 +12,8 @@
 
 @synthesize locationManager;
 @synthesize managedObjectContext;
+@synthesize latitudeLabel;
+@synthesize longitudeLabel;
 
 
 // ================================================================================================
@@ -23,7 +25,10 @@
     
     NSLog(@"NearestLocationViewController new location: latitude %+.6f, longitude %+.6f\n",
           [newLocation coordinate].latitude,
-          [newLocation coordinate].longitude);    
+          [newLocation coordinate].longitude);
+    [latitudeLabel setText:[NSString stringWithFormat:@"%.6f",[newLocation coordinate].latitude]];
+    [longitudeLabel setText:[NSString stringWithFormat:@"%.6f",[newLocation coordinate].longitude]];
+    [latitudeLabel setNeedsDisplay];
 }
 
 - (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -73,6 +78,8 @@
 
 - (void)viewDidUnload
 {
+    [self setLatitudeLabel:nil];
+    [self setLongitudeLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -98,4 +105,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [latitudeLabel release];
+    [longitudeLabel release];
+    [super dealloc];
+}
 @end

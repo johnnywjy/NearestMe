@@ -13,6 +13,9 @@
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) IBOutlet UILabel *latitudeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *longitudeLabel;
+
 
 - (void) locationManager:(CLLocationManager *)manager
      didUpdateToLocation:(CLLocation *)newLocation
