@@ -27,6 +27,9 @@
 @property (retain, nonatomic) IBOutlet UITextField *nameTextField;
 @property (retain, nonatomic) IBOutlet UITextField *commentTextField;
 @property (retain, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (retain, nonatomic) NSString *nameStr;
+@property (retain, nonatomic) NSString *commentStr;
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (IBAction)done:(id)sender;

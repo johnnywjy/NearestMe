@@ -7,7 +7,7 @@
 //
 
 #import "MyLocListTableViewController.h"
-
+#import "MyLocationsEntity.h"
 
 @implementation MyLocListTableViewController
 
@@ -18,7 +18,27 @@
 
 - (void) newLocationEntryComplete:(NewLocationEntryViewController *)controller wasCancelled:(BOOL)cancelled {
     
-    NSLog(@"The %@ button was pressed", (cancelled==NO?@"Done":@"Cancle"));        
+    NSLog(@"The %@ button was pressed", (cancelled==NO?@"Done":@"Cancle"));
+    if (cancelled == NO) {
+        CLLocation *location = [controller location];
+        NSString *nameStr = [controller nameStr];
+        NSString *commentStr = [controller commentStr];
+        NSNumber *proximity = [NSNumber numberWithDouble:0.0];
+        // ==========================================================
+        // Create and configure a new instance of the Location entity
+        MyLocationsEntity *newLocationEntity = (MyLocationsEntity *)[NSEntityDescription
+                                                                   insertNewObjectForEntityForName:@"MyLocationsEntity"
+                                                                   inManagedObjectContext:managedObjectContext];
+        
+        // ==========================================================
+        // Save the new event
+        NSError *error = nil;
+        if (![managedObjectContext save:&error]) {
+            // We should handle the error
+            NSLog(@"Error in saving an event in addLocation");
+        }
+
+    }
     [self dismissModalViewControllerAnimated:YES];
 }
 // ================================================================================================

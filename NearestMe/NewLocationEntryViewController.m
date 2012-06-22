@@ -19,6 +19,8 @@
 @synthesize commentTextField;
 @synthesize navigationBar;
 @synthesize delegate;
+@synthesize nameStr;
+@synthesize commentStr;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -26,6 +28,10 @@
 }
 
 - (IBAction)done:(id)sender {
+    // Get values from the view before returning
+    [self setNameStr:[nameTextField text]];
+    [self setCommentStr:[commentTextField text]];
+    
     [[self delegate] newLocationEntryComplete:self wasCancelled:NO];
 }
 
