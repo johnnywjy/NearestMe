@@ -21,6 +21,8 @@
 		3B979EDF159394060017376D /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B979EDE159394060017376D /* 74-location.png */; };
 		C305109C1594A634005ADFCE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C305109B1594A634005ADFCE /* CoreLocation.framework */; };
 		C305109F1594A63C005ADFCE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C305109E1594A63C005ADFCE /* MapKit.framework */; };
+		C30510BF1594B64B005ADFCE /* NewLocationEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30510BD1594B64B005ADFCE /* NewLocationEntryViewController.m */; };
+		C30510C01594B64B005ADFCE /* NewLocationEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C30510BE1594B64B005ADFCE /* NewLocationEntryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,9 @@
 		3B979EDE159394060017376D /* 74-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location.png"; sourceTree = "<group>"; };
 		C305109B1594A634005ADFCE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C305109E1594A63C005ADFCE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C30510BC1594B64B005ADFCE /* NewLocationEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLocationEntryViewController.h; sourceTree = "<group>"; };
+		C30510BD1594B64B005ADFCE /* NewLocationEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLocationEntryViewController.m; sourceTree = "<group>"; };
+		C30510BE1594B64B005ADFCE /* NewLocationEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewLocationEntryViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +129,9 @@
 				3B979ECF159391730017376D /* NearestLocationViewController.h */,
 				3B979ED0159391730017376D /* NearestLocationViewController.m */,
 				3B979ED1159391730017376D /* NearestLocationViewController.xib */,
+				C30510BC1594B64B005ADFCE /* NewLocationEntryViewController.h */,
+				C30510BD1594B64B005ADFCE /* NewLocationEntryViewController.m */,
+				C30510BE1594B64B005ADFCE /* NewLocationEntryViewController.xib */,
 			);
 			name = "Nearest Location VC Group";
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 				3B979ED3159391730017376D /* NearestLocationViewController.xib in Resources */,
 				3B979EDD159393FF0017376D /* 103-map.png in Resources */,
 				3B979EDF159394060017376D /* 74-location.png in Resources */,
+				C30510C01594B64B005ADFCE /* NewLocationEntryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +206,7 @@
 				3B979EC6159390C30017376D /* NearestMe.xcdatamodeld in Sources */,
 				3B979ECE159391410017376D /* MyLocListTableViewController.m in Sources */,
 				3B979ED2159391730017376D /* NearestLocationViewController.m in Sources */,
+				C30510BF1594B64B005ADFCE /* NewLocationEntryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
