@@ -10,7 +10,39 @@
 
 @implementation NearestLocationViewController
 
+@synthesize locationManager;
 @synthesize managedObjectContext;
+
+
+// ================================================================================================
+#pragma mark - Core Location Delegate Methods
+
+- (void) locationManager:(CLLocationManager *)manager
+     didUpdateToLocation:(CLLocation *)newLocation
+            fromLocation:(CLLocation *)oldLocation {
+    
+    NSLog(@"NearestLocationViewController new location: latitude %+.6f, longitude %+.6f\n",
+          [newLocation coordinate].latitude,
+          [newLocation coordinate].longitude);    
+}
+
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    // For now, do nothing other than report to the log
+    NSLog(@"Unable to get location events");
+}
+
+- (CLLocationManager *)locationManager
+{
+    if (locationManager != nil) {
+        return locationManager;
+    }
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [locationManager setDistanceFilter:10];
+    [locationManager setDelegate:self];
+    
+    return locationManager;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +77,20 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"NearestLocationViewController about to appear");
+    [[self locationManager] startUpdatingLocation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    NSLog(@"NearestLocationViewController about to disappear");
+    [[self locationManager] stopUpdatingLocation];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
