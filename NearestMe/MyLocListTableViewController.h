@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "NewLocationEntryViewController.h"
 
-@interface MyLocListTableViewController : UITableViewController <NewLocationEntryViewControllerDelegate>{
+@interface MyLocListTableViewController : UITableViewController <NewLocationEntryViewControllerDelegate, CLLocationManagerDelegate>{
     NSMutableArray *myLocationEntityArray;
+    CLLocationManager *locationManager;
+    UIBarButtonItem *addButton;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

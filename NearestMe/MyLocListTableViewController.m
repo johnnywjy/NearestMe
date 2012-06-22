@@ -56,6 +56,34 @@
     }
     [self dismissModalViewControllerAnimated:YES];
 }
+
+- (CLLocationManager *)locationManager
+{
+    if (locationManager != nil) {
+        return locationManager;
+    }
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [locationManager setDistanceFilter:10];
+    [locationManager setDelegate:self];
+    
+    return locationManager;
+}
+
+// ================================================================================================
+#pragma mark - Core Location Delegate Methods
+
+- (void) locationManager:(CLLocationManager *)manager
+     didUpdateToLocation:(CLLocation *)newLocation
+            fromLocation:(CLLocation *)oldLocation {
+    
+    [addButton setEnabled:YES];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    [addButton setEnabled:NO];
+}
+
 // ================================================================================================
 
 - (void) addLocation{
@@ -64,9 +92,15 @@
     [myVC setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [myVC setDelegate:self];
     
-    // Create a fake location for testing purposes
-    CLLocation *testLoc = [[[CLLocation alloc] initWithLatitude:37.330174 longitude:-122.032774] autorelease];
-    [myVC setLocation:testLoc]; 
+    
+    // ==========================================================
+    // Get current location
+    CLLocation *location = [locationManager location];
+    if (location == nil) {
+        return;
+    }
+
+    [myVC setLocation:location]; 
     
     [self presentModalViewController:myVC animated:YES];    
 }
@@ -95,8 +129,9 @@
 {
     [super viewDidLoad];
     [self setTitle:@"NearestMe"];
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addLocation)];
+    addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addLocation)];
     self.navigationItem.rightBarButtonItem = addButton;
+    [addButton setEnabled:NO];
     
     //init for testing
     myLocationEntityArray = [[NSMutableArray alloc] init];
@@ -118,6 +153,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"MyLocListTableViewController about to appear");
+    [[self locationManager] startUpdatingLocation];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -128,6 +166,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    NSLog(@"MyLocListTableViewController about to disappear");
+    [[self locationManager] stopUpdatingLocation];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
