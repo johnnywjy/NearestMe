@@ -10,15 +10,17 @@
 #import "NewLocationEntryViewController.h"
 
 @interface MyLocListTableViewController : UITableViewController <NewLocationEntryViewControllerDelegate, CLLocationManagerDelegate>{
-    NSMutableArray *myLocationEntityArray;
     CLLocationManager *locationManager;
     UIBarButtonItem *addButton;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSMutableArray *myLocationEntityArray;
 
 
 - (void) addLocation;
 - (void) newLocationEntryComplete:(NewLocationEntryViewController *)controller wasCancelled:(BOOL)cancelled;
+- (void) getDataFromCoreData;
+- (void) updateProximityWithNewLocation:(CLLocation *)newLocation;
 
 @end

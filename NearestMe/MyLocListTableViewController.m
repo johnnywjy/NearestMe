@@ -12,6 +12,7 @@
 @implementation MyLocListTableViewController
 
 @synthesize managedObjectContext;
+@synthesize myLocationEntityArray;
 
 // ================================================================================================
 #pragma mark - Delegate Methods
@@ -78,6 +79,7 @@
             fromLocation:(CLLocation *)oldLocation {
     
     [addButton setEnabled:YES];
+    [self updateProximityWithNewLocation:newLocation];
 }
 
 - (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -85,6 +87,72 @@
 }
 
 // ================================================================================================
+
+
+// ================================================================================================
+#pragma mark - Core Data Methods
+
+- (void) getDataFromCoreData {
+    NSLog (@"Fetching data from Core in List View");
+    // A bespoke method to retrieve the data, and store it in myLocationEntityArray
+    // ====================================================================
+    // Get data from Core Data - 1) Define the Fetch Request
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MyLocationEntity"
+                                              inManagedObjectContext:managedObjectContext];
+    [request setEntity:entity];
+    
+    // ====================================================================
+    // Get data from Core Data - 2) Set the Sort Descriptor
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"proximity" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptors];
+    [sortDescriptors release];
+    [sortDescriptor release];
+    
+    // ====================================================================
+    // Get data from Core Data - 3) Execute the Request
+    
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResults == nil) {
+        // Need to handle the error
+        NSLog(@"Error when fetching data from Core Data");
+    }
+    
+    // ====================================================================
+    // Cleaning up...
+    
+    [self setMyLocationEntityArray:mutableFetchResults];
+    
+    [mutableFetchResults release];
+    [request release];
+}
+
+- (void) updateProximityWithNewLocation:(CLLocation *)newLocation {
+    
+    // Assumes that data has already been loaded into myLocationEntityArray
+    if (myLocationEntityArray == nil) {
+        return;
+    }
+    
+    // Iterate through, to update proximity and find nearest object.
+    
+    MyLocationEntity *myloc;
+    
+    CLLocationDistance proximity;
+    for (myloc in myLocationEntityArray) {
+        CLLocation *loc = [[[CLLocation alloc] initWithLatitude:[[myloc latitude] doubleValue]
+                                                      longitude:[[myloc longitude] doubleValue]] autorelease];
+        
+        proximity = [loc distanceFromLocation:newLocation];
+        [myloc setProximity:[NSNumber numberWithDouble:proximity]];
+    }
+    NSError *error = nil;
+    [managedObjectContext save:&error];
+}
 
 - (void) addLocation{
     NewLocationEntryViewController *myVC = [[[NewLocationEntryViewController alloc]
@@ -155,7 +223,8 @@
     [super viewWillAppear:animated];
     NSLog(@"MyLocListTableViewController about to appear");
     [[self locationManager] startUpdatingLocation];
-
+    [self getDataFromCoreData];
+    [[self tableView] reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
