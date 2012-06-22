@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B45EA471594ED94001403D0 /* MyLocationsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B45EA461594ED94001403D0 /* MyLocationsEntity.m */; };
 		3B979EB3159390C30017376D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B979EB2159390C30017376D /* UIKit.framework */; };
 		3B979EB5159390C30017376D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B979EB4159390C30017376D /* Foundation.framework */; };
 		3B979EB7159390C30017376D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B979EB6159390C30017376D /* CoreData.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B45EA451594ED94001403D0 /* MyLocationsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocationsEntity.h; sourceTree = "<group>"; };
+		3B45EA461594ED94001403D0 /* MyLocationsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocationsEntity.m; sourceTree = "<group>"; };
 		3B979EAE159390C30017376D /* NearestMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearestMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B979EB2159390C30017376D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B979EB4159390C30017376D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +111,8 @@
 				3B979ECD159391410017376D /* MyLocListTableViewController.m */,
 				3B979EE0159394D70017376D /* Nearest Location VC Group */,
 				3B979EC4159390C30017376D /* NearestMe.xcdatamodeld */,
+				3B45EA451594ED94001403D0 /* MyLocationsEntity.h */,
+				3B45EA461594ED94001403D0 /* MyLocationsEntity.m */,
 				3B979EC1159390C30017376D /* NearestMeAppDelegate.h */,
 				3B979EC2159390C30017376D /* NearestMeAppDelegate.m */,
 				C30510BC1594B64B005ADFCE /* NewLocationEntryViewController.h */,
@@ -213,6 +218,7 @@
 				3B979ED2159391730017376D /* NearestLocationViewController.m in Sources */,
 				C30510BF1594B64B005ADFCE /* NewLocationEntryViewController.m in Sources */,
 				C30510C71594CA86005ADFCE /* LocationEntityAnnotation.m in Sources */,
+				3B45EA471594ED94001403D0 /* MyLocationsEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
