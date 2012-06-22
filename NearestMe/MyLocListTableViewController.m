@@ -13,6 +13,29 @@
 
 @synthesize managedObjectContext;
 
+// ================================================================================================
+#pragma mark - Delegate Methods
+
+- (void) newLocationEntryComplete:(NewLocationEntryViewController *)controller wasCancelled:(BOOL)cancelled {
+    
+    NSLog(@"The %@ button was pressed", (cancelled==NO?@"Done":@"Cancle"));        
+    [self dismissModalViewControllerAnimated:YES];
+}
+// ================================================================================================
+
+- (void) addLocation{
+    NewLocationEntryViewController *myVC = [[[NewLocationEntryViewController alloc]
+                                             initWithNibName:@"NewLocationEntryViewController" bundle:nil] autorelease];
+    [myVC setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    [myVC setDelegate:self];
+    
+    // Create a fake location for testing purposes
+    CLLocation *testLoc = [[[CLLocation alloc] initWithLatitude:37.330174 longitude:-122.032774] autorelease];
+    [myVC setLocation:testLoc]; 
+    
+    [self presentModalViewController:myVC animated:YES];    
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,6 +59,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTitle:@"NearestMe"];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addLocation)];
+    self.navigationItem.rightBarButtonItem = addButton;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

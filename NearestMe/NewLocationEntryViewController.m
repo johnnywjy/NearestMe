@@ -9,12 +9,23 @@
 #import "NewLocationEntryViewController.h"
 
 @implementation NewLocationEntryViewController
+
+@synthesize location;
 @synthesize latitudeLabel;
 @synthesize longitudeLabel;
 @synthesize mapView;
 @synthesize nameTextField;
 @synthesize commentTextField;
 @synthesize navigationBar;
+@synthesize delegate;
+
+- (IBAction)done:(id)sender {
+    [[self delegate] newLocationEntryComplete:self wasCancelled:NO];
+}
+
+- (IBAction)cancel:(id)sender {
+    [[self delegate] newLocationEntryComplete:self wasCancelled:YES];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +50,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[[self navigationBar] topItem] setTitle:@"Add Location"];
+    
+    NSLog(@"NearestLocationViewController new location: latitude %+.6f, longitude %+.6f\n",
+          [location coordinate].latitude,
+          [location coordinate].longitude);
+    
+    [latitudeLabel setText:[NSString stringWithFormat:@"%.6f",[location coordinate].latitude]];
+    [longitudeLabel setText:[NSString stringWithFormat:@"%.6f",[location coordinate].longitude]];
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([location coordinate],
+                                                                       0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
+    [mapView setRegion:adjustedRegion animated:YES];
+    
 }
 
 - (void)viewDidUnload
