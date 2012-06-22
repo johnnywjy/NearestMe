@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "NewLocationEntryViewController.h"
 
-@interface MyLocListTableViewController : UITableViewController <NewLocationEntryViewControllerDelegate>
-
+@interface MyLocListTableViewController : UITableViewController <NewLocationEntryViewControllerDelegate>{
+    NSMutableArray *myLocationEntityArray;
+}
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
 
 - (void) addLocation;
 - (void) newLocationEntryComplete:(NewLocationEntryViewController *)controller wasCancelled:(BOOL)cancelled;

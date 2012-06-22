@@ -7,7 +7,7 @@
 //
 
 #import "MyLocListTableViewController.h"
-#import "MyLocationsEntity.h"
+#import "MyLocationEntity.h"
 
 @implementation MyLocListTableViewController
 
@@ -24,11 +24,17 @@
         NSString *nameStr = [controller nameStr];
         NSString *commentStr = [controller commentStr];
         NSNumber *proximity = [NSNumber numberWithDouble:0.0];
+        
         // ==========================================================
         // Create and configure a new instance of the Location entity
-        MyLocationsEntity *newLocationEntity = (MyLocationsEntity *)[NSEntityDescription
-                                                                   insertNewObjectForEntityForName:@"MyLocationsEntity"
+        MyLocationEntity *newLocationEntity = (MyLocationEntity *)[NSEntityDescription
+                                                                   insertNewObjectForEntityForName:@"MyLocationEntity"
                                                                    inManagedObjectContext:managedObjectContext];
+        [newLocationEntity setName:nameStr];
+        [newLocationEntity setComment:commentStr];
+        [newLocationEntity setLatitude:[NSNumber numberWithDouble:[location coordinate].latitude]];
+        [newLocationEntity setLongitude:[NSNumber numberWithDouble:[location coordinate].longitude]];
+        [newLocationEntity setProximity:proximity];
         
         // ==========================================================
         // Save the new event
@@ -37,6 +43,15 @@
             // We should handle the error
             NSLog(@"Error in saving an event in addLocation");
         }
+        
+        // ==========================================================
+        // Update our location array and the table view
+        [myLocationEntityArray insertObject:newLocationEntity atIndex:0];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                withRowAnimation:UITableViewRowAnimationFade];
+        [[self tableView] scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 
     }
     [self dismissModalViewControllerAnimated:YES];
@@ -82,6 +97,9 @@
     [self setTitle:@"NearestMe"];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addLocation)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    //init for testing
+    myLocationEntityArray = [[NSMutableArray alloc] init];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -127,16 +145,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [myLocationEntityArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,10 +161,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
+    MyLocationEntity *myloc = (MyLocationEntity *)[myLocationEntityArray objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[myloc name]];
+
+    NSString *locStr = [NSString stringWithFormat:@"%.3f, %.3f",
+                        [[myloc latitude] doubleValue],
+                        [[myloc longitude] doubleValue]];
+    [[cell detailTextLabel] setText:locStr];
     
     return cell;
 }
