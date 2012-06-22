@@ -28,6 +28,7 @@
 @property (retain, nonatomic) IBOutlet UITextField *commentTextField;
 @property (retain, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (IBAction)done:(id)sender;
 - (IBAction)cancel:(id)sender;
 

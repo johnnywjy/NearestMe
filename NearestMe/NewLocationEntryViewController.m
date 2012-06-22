@@ -7,6 +7,7 @@
 //
 
 #import "NewLocationEntryViewController.h"
+#import "LocationEntityAnnotation.h"
 
 @implementation NewLocationEntryViewController
 
@@ -18,6 +19,11 @@
 @synthesize commentTextField;
 @synthesize navigationBar;
 @synthesize delegate;
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 - (IBAction)done:(id)sender {
     [[self delegate] newLocationEntryComplete:self wasCancelled:NO];
@@ -52,10 +58,6 @@
     // Do any additional setup after loading the view from its nib.
     [[[self navigationBar] topItem] setTitle:@"Add Location"];
     
-    NSLog(@"NearestLocationViewController new location: latitude %+.6f, longitude %+.6f\n",
-          [location coordinate].latitude,
-          [location coordinate].longitude);
-    
     [latitudeLabel setText:[NSString stringWithFormat:@"%.6f",[location coordinate].latitude]];
     [longitudeLabel setText:[NSString stringWithFormat:@"%.6f",[location coordinate].longitude]];
     
@@ -64,6 +66,11 @@
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
     [mapView setRegion:adjustedRegion animated:YES];
     
+    LocationEntityAnnotation *annotation = [[[LocationEntityAnnotation alloc]
+                                             initWithCoordinate:[location coordinate]
+                                             title:@"Current Location"
+                                             subtitle:@"Add Details"] autorelease];    
+    [mapView addAnnotation:annotation];      
 }
 
 - (void)viewDidUnload
